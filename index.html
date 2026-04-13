@@ -1,0 +1,759 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Course Atlas</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<script src="https://d3js.org/d3.v7.min.js"></script>
+<script src="data.js"></script>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+
+:root{
+  --bg:#07090F;
+  --bg2:#0C1020;
+  --bg3:#111827;
+  --surface:rgba(13,18,36,0.92);
+  --surface2:rgba(17,24,48,0.88);
+  --border:rgba(148,163,255,0.1);
+  --border2:rgba(148,163,255,0.22);
+  --primary:#818CF8;
+  --primary-d:#4F46E5;
+  --primary-glow:rgba(129,140,248,0.3);
+  --gold:#F59E0B;
+  --gold-glow:rgba(245,158,11,0.25);
+  --teal:#2DD4BF;
+  --teal-glow:rgba(45,212,191,0.2);
+  --text:#EEF0FF;
+  --text2:#8892B8;
+  --text3:#4A5578;
+  --r-xl:28px;
+  --r-lg:20px;
+  --r-md:14px;
+  --r-sm:10px;
+  --shadow:0 20px 60px rgba(0,0,0,.55),0 2px 12px rgba(129,140,248,.06);
+  --shadow-lg:0 32px 80px rgba(0,0,0,.65),0 4px 24px rgba(129,140,248,.14);
+  --ease:cubic-bezier(.4,0,.2,1);
+}
+
+html{scroll-behavior:smooth}
+
+body{
+  font-family:'Plus Jakarta Sans',-apple-system,system-ui,sans-serif;
+  color:var(--text);
+  background:var(--bg);
+  background-image:
+    radial-gradient(ellipse 80% 55% at 90% -5%,rgba(79,70,229,.2) 0%,transparent 60%),
+    radial-gradient(ellipse 50% 40% at 8% 105%,rgba(20,184,166,.12) 0%,transparent 60%),
+    radial-gradient(ellipse 60% 40% at 50% 50%,rgba(129,140,248,.03) 0%,transparent 70%);
+  min-height:100vh;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  overflow-x:hidden;
+}
+
+::-webkit-scrollbar{width:6px}
+::-webkit-scrollbar-track{background:var(--bg2)}
+::-webkit-scrollbar-thumb{background:rgba(148,163,255,.2);border-radius:99px}
+::-webkit-scrollbar-thumb:hover{background:rgba(148,163,255,.35)}
+
+a{text-decoration:none;color:inherit}
+
+/* ---- PAGE CONTAINER ---- */
+.page{max-width:1440px;margin:0 auto;padding:28px 28px 90px}
+
+/* ---- TOP NAV ---- */
+.top{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:16px;
+  margin-bottom:36px;
+  padding:14px 20px;
+  background:rgba(10,14,28,.8);
+  backdrop-filter:blur(24px);
+  -webkit-backdrop-filter:blur(24px);
+  border:1px solid var(--border);
+  border-radius:var(--r-lg);
+  position:sticky;
+  top:16px;
+  z-index:50;
+}
+
+.brand{
+  display:flex;
+  align-items:center;
+  gap:14px;
+  font-size:12px;
+  font-weight:700;
+  text-transform:uppercase;
+  letter-spacing:.12em;
+  color:var(--text);
+}
+
+.mark{
+  width:42px;
+  height:42px;
+  border-radius:13px;
+  background:linear-gradient(135deg,#4F46E5 0%,#818CF8 55%,#2DD4BF 100%);
+  flex-shrink:0;
+  position:relative;
+  box-shadow:0 4px 20px rgba(129,140,248,.45);
+}
+
+.mark::after{
+  content:'';
+  position:absolute;
+  inset:2px;
+  border-radius:11px;
+  background:linear-gradient(135deg,rgba(255,255,255,.18),transparent 60%);
+}
+
+.muted{color:var(--text2);line-height:1.75}
+
+/* ---- HERO ---- */
+.hero{
+  display:grid;
+  grid-template-columns:1.35fr 1fr;
+  gap:28px;
+  padding:52px 48px;
+  background:var(--surface);
+  backdrop-filter:blur(32px);
+  -webkit-backdrop-filter:blur(32px);
+  border:1px solid var(--border);
+  border-radius:var(--r-xl);
+  box-shadow:var(--shadow);
+  position:relative;
+  overflow:hidden;
+  animation:fadeUp .6s var(--ease) both;
+}
+
+.hero::before{
+  content:'';
+  position:absolute;
+  top:-80px;right:-80px;
+  width:360px;height:360px;
+  background:radial-gradient(circle,rgba(129,140,248,.14),transparent 70%);
+  pointer-events:none;
+}
+
+.hero::after{
+  content:'';
+  position:absolute;
+  bottom:-60px;left:30%;
+  width:280px;height:280px;
+  background:radial-gradient(circle,rgba(45,212,191,.07),transparent 70%);
+  pointer-events:none;
+}
+
+.ey{
+  display:inline-flex;
+  align-items:center;
+  gap:9px;
+  padding:8px 16px;
+  border-radius:999px;
+  background:rgba(129,140,248,.1);
+  border:1px solid rgba(129,140,248,.22);
+  color:var(--primary);
+  font-size:11px;
+  font-weight:700;
+  letter-spacing:.1em;
+  text-transform:uppercase;
+  margin-bottom:22px;
+}
+
+.ey::before{
+  content:'';
+  width:7px;height:7px;
+  border-radius:50%;
+  background:var(--primary);
+  box-shadow:0 0 10px var(--primary);
+  animation:blink 2.4s ease-in-out infinite;
+}
+
+@keyframes blink{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(.75)}}
+
+.hero h1{
+  font-family:'Playfair Display',Georgia,serif;
+  font-size:clamp(36px,4.8vw,70px);
+  font-weight:800;
+  line-height:1.04;
+  letter-spacing:-.025em;
+  margin-bottom:18px;
+  background:linear-gradient(135deg,#E8ECFF 0%,#A8B4FF 55%,#818CF8 100%);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  background-clip:text;
+}
+
+.hero .muted{font-size:15px;max-width:480px}
+
+/* ---- STATS ---- */
+.stats{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:14px;
+  align-content:start;
+}
+
+.stat{
+  padding:26px 22px;
+  border-radius:var(--r-lg);
+  background:rgba(255,255,255,.03);
+  border:1px solid var(--border);
+  transition:all .25s var(--ease);
+  position:relative;
+  overflow:hidden;
+  cursor:default;
+}
+
+.stat::before{
+  content:'';
+  position:absolute;inset:0;
+  background:linear-gradient(135deg,rgba(245,158,11,.06),transparent 60%);
+  opacity:0;
+  transition:.25s var(--ease);
+}
+
+.stat:hover::before{opacity:1}
+.stat:hover{border-color:rgba(245,158,11,.25);transform:translateY(-3px);box-shadow:0 12px 40px rgba(0,0,0,.3),0 0 0 1px rgba(245,158,11,.1)}
+
+.num{
+  display:block;
+  font-family:'Playfair Display',Georgia,serif;
+  font-size:52px;
+  font-weight:700;
+  line-height:1;
+  margin-bottom:6px;
+  background:linear-gradient(135deg,#FCD34D,#F59E0B);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  background-clip:text;
+  animation:countUp .8s var(--ease) .4s both;
+}
+
+.lab{
+  font-size:11px;
+  font-weight:700;
+  text-transform:uppercase;
+  letter-spacing:.12em;
+  color:var(--text3);
+}
+
+/* ---- SECTION ---- */
+.section{
+  margin-top:48px;
+  animation:fadeUp .6s var(--ease) .12s both;
+}
+
+.head{
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-end;
+  gap:20px;
+  margin-bottom:22px;
+}
+
+.section h2,.side h3{
+  font-family:'Playfair Display',Georgia,serif;
+}
+
+.section h2{
+  font-size:clamp(26px,3.5vw,42px);
+  font-weight:700;
+  letter-spacing:-.015em;
+  color:var(--text);
+  margin:0 0 8px;
+}
+
+/* ---- FILTERS ---- */
+.filters{display:flex;gap:8px;flex-wrap:wrap}
+
+.fbtn{
+  display:inline-flex;
+  padding:10px 18px;
+  border-radius:999px;
+  font-size:12px;
+  font-weight:700;
+  font-family:inherit;
+  letter-spacing:.05em;
+  border:1px solid var(--border);
+  background:rgba(255,255,255,.04);
+  color:var(--text2);
+  cursor:pointer;
+  transition:all .2s var(--ease);
+}
+
+.fbtn:hover{
+  background:rgba(129,140,248,.1);
+  border-color:rgba(129,140,248,.28);
+  color:var(--primary);
+  transform:translateY(-1px);
+}
+
+.fbtn.active{
+  background:var(--primary);
+  border-color:var(--primary);
+  color:#fff;
+  box-shadow:0 4px 20px rgba(129,140,248,.45);
+}
+
+/* ---- GRID ---- */
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(320px,1fr));
+  gap:20px;
+}
+
+/* ---- CARDS ---- */
+.card{
+  display:block;
+  border-radius:var(--r-xl);
+  overflow:hidden;
+  color:inherit;
+  text-decoration:none;
+  background:var(--surface);
+  border:1px solid var(--border);
+  box-shadow:0 8px 32px rgba(0,0,0,.35);
+  transition:all .24s var(--ease);
+  position:relative;
+}
+
+.card::after{
+  content:'';
+  position:absolute;inset:0;
+  border-radius:var(--r-xl);
+  background:linear-gradient(135deg,rgba(129,140,248,.06),transparent 60%);
+  opacity:0;
+  transition:.24s var(--ease);
+  pointer-events:none;
+}
+
+.card:hover{
+  transform:translateY(-7px);
+  border-color:var(--border2);
+  box-shadow:var(--shadow-lg);
+}
+
+.card:hover::after{opacity:1}
+
+.thumb{
+  aspect-ratio:16/9;
+  position:relative;
+  overflow:hidden;
+  background:linear-gradient(135deg,#0D1830,#1A2540);
+}
+
+.thumb img{
+  width:100%;height:100%;
+  object-fit:cover;display:block;
+  transition:transform .45s var(--ease);
+}
+
+.card:hover .thumb img{transform:scale(1.06)}
+
+.fallback{
+  height:100%;
+  display:grid;
+  place-items:center;
+  font-family:'Playfair Display',Georgia,serif;
+  font-size:34px;
+  font-weight:700;
+  color:rgba(129,140,248,.4);
+  background:linear-gradient(135deg,#0D1424,#151E32);
+}
+
+.sk-badge-thumb{position:absolute;top:12px;left:12px;background:rgba(129,140,248,.85);backdrop-filter:blur(6px);color:#fff;border-radius:999px;padding:4px 10px;font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;border:1px solid rgba(255,255,255,.15)}
+.dur{
+  position:absolute;
+  right:12px;bottom:12px;
+  background:rgba(0,0,0,.82);
+  backdrop-filter:blur(8px);
+  color:#fff;
+  border-radius:999px;
+  padding:5px 12px;
+  font-size:11px;
+  font-weight:700;
+  font-family:'JetBrains Mono',monospace;
+  border:1px solid rgba(255,255,255,.1);
+  letter-spacing:.04em;
+}
+
+.body{padding:20px 22px 22px;position:relative}
+
+.pill{
+  display:inline-flex;
+  padding:6px 12px;
+  border-radius:999px;
+  font-size:11px;
+  font-weight:700;
+  letter-spacing:.07em;
+  text-transform:uppercase;
+}
+
+.title{
+  margin:14px 0 10px;
+  font-size:17px;
+  font-weight:700;
+  line-height:1.35;
+  color:var(--text);
+}
+
+.desc{
+  font-size:13px;
+  color:var(--text2);
+  line-height:1.72;
+  min-height:56px;
+}
+
+.chip{
+  display:inline-flex;
+  padding:5px 10px;
+  border-radius:6px;
+  font-size:11px;
+  font-weight:600;
+  background:rgba(129,140,248,.1);
+  color:var(--primary);
+  border:1px solid rgba(129,140,248,.15);
+}
+
+.meta{
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
+  margin-top:12px;
+  font-size:12px;
+  font-weight:600;
+  color:var(--text3);
+}
+
+/* ---- GRAPH ---- */
+.graph{
+  display:grid;
+  grid-template-columns:minmax(0,1.65fr) 360px;
+  gap:16px;
+}
+
+.panel{
+  background:var(--surface);
+  backdrop-filter:blur(24px);
+  -webkit-backdrop-filter:blur(24px);
+  border:1px solid var(--border);
+  border-radius:var(--r-xl);
+  box-shadow:var(--shadow);
+  padding:24px;
+}
+
+.toolbar{
+  display:flex;
+  justify-content:space-between;
+  gap:12px;
+  align-items:center;
+  flex-wrap:wrap;
+  margin-bottom:16px;
+}
+
+#strength{
+  -webkit-appearance:none;
+  appearance:none;
+  height:4px;
+  border-radius:99px;
+  background:rgba(129,140,248,.2);
+  outline:none;
+  cursor:pointer;
+  margin:0 8px;
+  width:120px;
+}
+
+#strength::-webkit-slider-thumb{
+  -webkit-appearance:none;
+  width:18px;height:18px;
+  border-radius:50%;
+  background:var(--primary);
+  box-shadow:0 0 12px var(--primary-glow);
+  cursor:pointer;
+  transition:transform .15s;
+}
+
+#strength::-webkit-slider-thumb:hover{transform:scale(1.25)}
+
+#sval{
+  font-family:'JetBrains Mono',monospace;
+  font-size:13px;
+  font-weight:600;
+  color:var(--primary);
+}
+
+#graph{
+  height:680px;
+  border-radius:var(--r-lg);
+  border:1px solid var(--border);
+  background:
+    radial-gradient(ellipse 65% 55% at 50% 50%,rgba(129,140,248,.06),transparent 65%),
+    radial-gradient(ellipse 40% 35% at 85% 15%,rgba(79,70,229,.08),transparent 55%),
+    radial-gradient(ellipse 35% 30% at 15% 85%,rgba(45,212,191,.05),transparent 55%),
+    radial-gradient(circle,rgba(148,163,255,.08) 1px,transparent 1px),
+    linear-gradient(180deg,#0A1020,#060810);
+  background-size:100% 100%,100% 100%,100% 100%,32px 32px,100% 100%;
+  overflow:hidden;
+  position:relative;
+}
+
+#graph::after{
+  content:'Drag · Scroll to zoom · Click to inspect';
+  position:absolute;
+  bottom:14px;left:50%;
+  transform:translateX(-50%);
+  font-size:11px;
+  font-weight:600;
+  color:rgba(148,163,255,.3);
+  letter-spacing:.05em;
+  pointer-events:none;
+  white-space:nowrap;
+}
+
+#graph svg{width:100%;height:100%;display:block}
+
+.legend{
+  display:flex;
+  gap:14px;
+  flex-wrap:wrap;
+  font-size:12px;
+  color:var(--text2);
+  align-items:center;
+  font-weight:600;
+}
+
+.dot{
+  width:9px;height:9px;
+  border-radius:50%;
+  flex-shrink:0;
+}
+
+.side{
+  background:var(--surface);
+  backdrop-filter:blur(24px);
+  -webkit-backdrop-filter:blur(24px);
+  border:1px solid var(--border);
+  border-radius:var(--r-xl);
+  box-shadow:var(--shadow);
+  padding:24px;
+  position:sticky;
+  top:80px;
+  align-self:start;
+  max-height:720px;
+  overflow-y:auto;
+}
+
+.side h3{
+  font-size:22px;
+  font-weight:700;
+  margin:0 0 12px;
+  color:var(--text);
+  line-height:1.2;
+}
+
+.side p{color:var(--text2);line-height:1.75;font-size:14px}
+
+.list{display:grid;gap:10px;margin-top:16px}
+
+.link{
+  display:block;
+  padding:14px 16px;
+  border-radius:var(--r-md);
+  border:1px solid var(--border);
+  background:rgba(255,255,255,.03);
+  color:inherit;
+  text-decoration:none;
+  transition:all .2s var(--ease);
+}
+
+.link:hover{
+  background:rgba(129,140,248,.08);
+  border-color:var(--border2);
+  transform:translateX(3px);
+}
+
+.link strong{font-size:13px;font-weight:700;color:var(--text);display:block;margin-bottom:4px}
+.link .muted{font-size:12px}
+
+/* ---- STEPS ---- */
+.steps{
+  display:grid;
+  grid-template-columns:repeat(5,minmax(0,1fr));
+  gap:14px;
+}
+
+.step{
+  padding:26px 22px;
+  border-radius:var(--r-xl);
+  background:var(--surface);
+  border:1px solid var(--border);
+  box-shadow:var(--shadow);
+  transition:all .24s var(--ease);
+  position:relative;
+  overflow:hidden;
+}
+
+.step::before{
+  content:'';
+  position:absolute;
+  top:0;left:0;right:0;
+  height:3px;
+  background:linear-gradient(90deg,var(--primary),var(--teal));
+  transform:scaleX(0);
+  transform-origin:left;
+  transition:.3s var(--ease);
+}
+
+.step:hover::before{transform:scaleX(1)}
+.step:hover{border-color:var(--border2);transform:translateY(-4px);box-shadow:var(--shadow-lg)}
+
+.stepno{
+  font-family:'JetBrains Mono',monospace;
+  font-size:11px;
+  font-weight:600;
+  text-transform:uppercase;
+  letter-spacing:.12em;
+  color:var(--primary);
+  margin-bottom:12px;
+  opacity:.8;
+}
+
+.step h3{
+  font-family:'Plus Jakarta Sans',sans-serif;
+  font-size:14px;
+  font-weight:700;
+  color:var(--text);
+  line-height:1.45;
+}
+
+/* ---- ANIMATIONS ---- */
+@keyframes fadeUp{
+  from{opacity:0;transform:translateY(24px)}
+  to{opacity:1;transform:translateY(0)}
+}
+
+@keyframes countUp{
+  from{opacity:0;transform:translateY(12px)}
+  to{opacity:1;transform:translateY(0)}
+}
+
+/* ---- RESPONSIVE ---- */
+@media(max-width:1100px){
+  .hero,.graph,.steps{grid-template-columns:1fr}
+  .side{position:static;max-height:none}
+}
+
+@media(max-width:760px){
+  .page{padding:16px 14px 56px}
+  .hero{padding:28px 22px}
+  .stats{grid-template-columns:1fr 1fr}
+  .top{position:relative;top:0}
+}
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="top">
+    <div class="brand">
+      <div class="mark"></div>
+      <div>
+        <div>Course Atlas</div>
+        <div class="muted" id="topline" style="font-size:11px;font-weight:500;text-transform:none;letter-spacing:.02em;margin-top:1px"></div>
+      </div>
+    </div>
+  </div>
+
+  <section class="hero">
+    <div>
+      <span class="ey">Video knowledge mining</span>
+      <h1>Lecture videos become a study workspace.</h1>
+      <p class="muted">This archive is rebuilt as a library of chaptered transcripts, quiz material, flashcards, concept maps, and cross-video navigation.</p>
+    </div>
+    <div class="stats">
+      <div class="stat"><span class="num" id="sv">0</span><span class="lab">Lectures</span></div>
+      <div class="stat"><span class="num" id="sc">0</span><span class="lab">Concepts</span></div>
+      <div class="stat"><span class="num" id="sf">0</span><span class="lab">Flashcards</span></div>
+      <div class="stat"><span class="num" id="sq">0</span><span class="lab">Quiz items</span></div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="head">
+      <div>
+        <h2>Lecture library</h2>
+        <div class="muted">Browse each lecture as a single study surface with transcript, concept map, and generated learning materials.</div>
+      </div>
+      <div class="filters" id="filters"></div>
+    </div>
+    <div class="grid" id="grid"></div>
+  </section>
+
+  <section class="section">
+    <div class="head">
+      <div>
+        <h2>Cross-video concept graph</h2>
+        <div class="muted">Raise the threshold to hide weaker edges and focus on the strongest concept clusters.</div>
+      </div>
+    </div>
+    <div class="graph">
+      <div class="panel">
+        <div class="toolbar">
+          <div style="display:flex;align-items:center;gap:10px">
+            <span style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.09em;color:var(--text3)">Edge threshold</span>
+            <input id="strength" type="range" min="0" max="100" value="35">
+            <span id="sval" style="font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:600;color:var(--primary);min-width:28px">0.35</span>
+          </div>
+          <div class="legend" id="legend"></div>
+        </div>
+        <div id="graph"><svg id="gsvg"></svg></div>
+      </div>
+      <aside class="side" id="side"></aside>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="head">
+      <div>
+        <h2>How it&rsquo;s built</h2>
+        <div class="muted">The final interface sits on top of normalized transcript evidence, chapter detection, generated study materials, and merged concepts.</div>
+      </div>
+    </div>
+    <div class="steps" id="steps"></div>
+  </section>
+</div>
+
+<script>
+const CA=window.COURSE_ATLAS||{videos:{},knowledge_graph:{nodes:[],edges:[],metadata:{}},course_colors:{},course_labels:{},video_order:[]};
+const esc=s=>String(s||"").replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[m]));
+const trim=s=>{s=String(s||"");const i=s.indexOf(":");return i>=0?s.slice(i+1).trim():s};
+const dur=n=>{n=+n||0;const h=Math.floor(n/3600),m=Math.floor((n%3600)/60),s=Math.round(n%60);return h?`${h}:${String(m).padStart(2,"0")}:${String(s).padStart(2,"0")}`:`${m}:${String(s).padStart(2,"0")}`};
+const picks=v=>(((v.study_guide||{}).key_concepts||[]).slice(0,3).map(x=>x.term||x.label||""));
+const sum=v=>((v.extras||{}).one_liner)||((((v.chapters||{}).chapters||[])[0]||{}).summary)||"Study assets available.";
+function stats(){const vids=CA.video_order.map(id=>CA.videos[id]).filter(Boolean),f=vids.reduce((a,v)=>a+((((v.flashcards||{}).cards)||[]).length),0),q=vids.reduce((a,v)=>a+((((v.quiz||{}).questions)||[]).length),0);sv.textContent=vids.length;sc.textContent=(CA.knowledge_graph.metadata||{}).total_nodes||((CA.knowledge_graph.nodes)||[]).length;sf.textContent=f;sq.textContent=q;topline.textContent=`${vids.length} lectures · 4 course areas · static knowledge base`;}
+function filters(){const items=[["all","All lectures"],...Object.entries(CA.course_labels)];filters.innerHTML=items.map((x,i)=>`<button class="fbtn ${!i?"active":""}" data-f="${x[0]}">${esc(x[1])}</button>`).join("");document.querySelectorAll(".fbtn").forEach(b=>b.onclick=()=>{document.querySelectorAll(".fbtn").forEach(x=>x.classList.remove("active"));b.classList.add("active");gridf(b.dataset.f)})}
+function gridf(f="all"){grid.innerHTML=CA.video_order.filter(id=>CA.videos[id]).filter(id=>f==="all"||((CA.videos[id].meta||{}).course_id===f)).map(id=>{const v=CA.videos[id],m=v.meta||{},c=CA.course_colors[m.course_id]||"#818CF8",skImg=v.sketchnote_image||'',thumbSrc=skImg||m.thumbnail_url||'',thumb=thumbSrc?`<img src="${thumbSrc}" alt="${esc(m.title)}">${skImg?'<div class="sk-badge-thumb">Sketchnote</div>':''}`:`<div class="fallback">${esc((m.course_label||"LE").slice(0,2).toUpperCase())}</div>`;return `<a class="card" href="video.html?id=${encodeURIComponent(id)}"><div class="thumb">${thumb}<div class="dur">${esc(dur(m.duration_sec))}</div></div><div class="body"><div class="pill" style="background:${c}18;color:${c};border:1px solid ${c}28">${esc(m.course_label||m.course||"Lecture")}</div><div class="title">${esc(trim(m.title||id))}</div><div class="desc">${esc(sum(v))}</div><div class="meta">${picks(v).map(t=>`<span class="chip">${esc(t)}</span>`).join("")}</div><div class="meta"><span>${(((v.chapters||{}).chapters)||[]).length} chapters</span><span>${(((v.flashcards||{}).cards)||[]).length} cards</span><span>${(((v.quiz||{}).questions)||[]).length} quiz items</span></div></div></a>`}).join("")}
+function refsForEdge(e){const hit=new Map(),shared=[];(e.source.appears_in||[]).forEach(r=>hit.set(r.video_id,r));(e.target.appears_in||[]).forEach(r=>{if(hit.has(r.video_id)){const s=hit.get(r.video_id);shared.push({video_id:r.video_id,title:r.title||s.title||(((CA.videos[r.video_id]||{}).meta||{}).title)||r.video_id,course_id:r.course_id||s.course_id,timestamp_sec:Math.min(+s.timestamp_sec||0,+r.timestamp_sec||0),source_timestamp_sec:+s.timestamp_sec||0,target_timestamp_sec:+r.timestamp_sec||0})}});if(e.video_id&&!shared.some(r=>r.video_id===e.video_id)){const meta=((CA.videos[e.video_id]||{}).meta)||{};shared.unshift({video_id:e.video_id,title:meta.title||e.video_id,course_id:meta.course_id,timestamp_sec:0,source_timestamp_sec:0,target_timestamp_sec:0})}return shared.sort((a,b)=>a.timestamp_sec-b.timestamp_sec)}
+function sidefill(n){if(!n){side.innerHTML='<h3>Explore the graph</h3><p>Drag nodes to rearrange clusters. Click a <strong style="color:var(--primary)">node</strong> to inspect a concept, or click an <strong style="color:var(--primary)">edge</strong> to inspect the relationship between two concepts.</p><div style="margin-top:20px;padding:16px;border-radius:14px;border:1px dashed rgba(148,163,255,.2);background:rgba(129,140,248,.04);font-size:12px;color:var(--text3);line-height:1.7"><div style="font-weight:700;color:var(--text2);margin-bottom:6px">How to navigate</div>Scroll or pinch to zoom · Drag nodes to reposition · Adjust the slider to filter by connection strength</div>';return}const refs=(n.appears_in||[]).slice().sort((a,b)=>(b.importance||0)-(a.importance||0));side.innerHTML=`<h3>${esc(n.label||n.id)}</h3><p>${esc(n.definition||n.intuition||"No definition available.")}</p><div class="muted" style="margin-top:10px;font-size:12px;font-weight:600">Importance ${(+(n.global_importance||0)).toFixed(2)} &middot; ${refs.length} lecture refs</div><div class="list">${refs.map(r=>`<a class="link" href="video.html?id=${encodeURIComponent(r.video_id)}&t=${encodeURIComponent(String(Math.round(r.timestamp_sec||0)))}"><strong>${esc(trim(r.title||r.video_id))}</strong><div class="muted">${esc(CA.course_labels[r.course_id]||r.course_id||"Lecture")} &middot; ${esc(dur(r.timestamp_sec||0))}</div></a>`).join("")}</div>`}
+function edgefill(e){const rel=String(e.relationship||e.type||'related_to').replace(/_/g,' '),refs=refsForEdge(e),src=e.source||{},tgt=e.target||{};side.innerHTML=`<h3>${esc(src.label||src.id||'Concept')} &harr; ${esc(tgt.label||tgt.id||'Concept')}</h3><p>${esc(e.description||'This edge links the two concepts in the concept graph.')}</p><div class="muted" style="margin-top:10px;font-size:12px;font-weight:600">Relationship: ${esc(rel)} &middot; strength ${(+(e.strength||0)).toFixed(2)}</div>${refs.length?`<div class="list">${refs.map(r=>`<a class="link" href="video.html?id=${encodeURIComponent(r.video_id)}&t=${encodeURIComponent(String(Math.round(r.timestamp_sec||0)))}"><strong>${esc(trim(r.title||r.video_id))}</strong><div class="muted">${esc(CA.course_labels[r.course_id]||r.course_id||'Lecture')} &middot; near ${esc(dur(r.source_timestamp_sec||r.timestamp_sec||0))}</div></a>`).join('')}</div>`:`<div class="list"><div class="link"><strong>Relationship evidence</strong><div class="muted">No shared lecture references were attached to this edge.</div></div></div>`}`}
+function legend(){legend.innerHTML=[...Object.entries(CA.course_labels).map(([id,l])=>`<span style="display:inline-flex;gap:6px;align-items:center"><span class="dot" style="background:${CA.course_colors[id]};box-shadow:0 0 7px ${CA.course_colors[id]}88"></span>${esc(l)}</span>`),'<span style="display:inline-flex;gap:6px;align-items:center"><span class="dot" style="background:#818CF8;box-shadow:0 0 7px #818CF888"></span>Cross-course</span>'].join('')}
+function graph(){sidefill(null);if(!window.d3){document.getElementById('graph').innerHTML='<div style="padding:24px;color:var(--text2)">D3 failed to load.</div>';return}const wrap=document.getElementById('graph'),svg=d3.select('#gsvg'),w=wrap.clientWidth||900,h=wrap.clientHeight||680,sl=document.getElementById('strength'),courseIds=Object.keys(CA.course_labels);svg.attr('viewBox',`0 0 ${w} ${h}`);function groupOf(n){return (n.courses||[]).length>1||n.is_cross_course?'cross':((n.courses||[])[0]||'cross')}function col(n){const g=groupOf(n);return g==='cross'?'#818CF8':(CA.course_colors[g]||'#818CF8')}function anchorMap(){const r=Math.min(w,h)*0.26,base={cross:{x:0,y:0}};courseIds.forEach((id,i)=>{const ang=(Math.PI*2*i)/Math.max(1,courseIds.length)-Math.PI/2;base[id]={x:Math.cos(ang)*r,y:Math.sin(ang)*r}});return base}function normalize(nodes,pad=72){const xs=nodes.map(d=>d.x||0),ys=nodes.map(d=>d.y||0),minX=Math.min(...xs),maxX=Math.max(...xs),minY=Math.min(...ys),maxY=Math.max(...ys),dx=Math.max(1,maxX-minX),dy=Math.max(1,maxY-minY),sx=(w-pad*2)/dx,sy=(h-pad*2)/dy,s=Math.min(sx,sy);nodes.forEach(d=>{d.sx=pad+(d.x-minX)*s;d.sy=pad+(d.y-minY)*s})}const clamp=(v,min,max)=>Math.max(min,Math.min(max,v));function draw(){const min=+sl.value/100;document.getElementById('sval').textContent=min.toFixed(2);svg.selectAll('*').remove();const nodes=(CA.knowledge_graph.nodes||[]).map(n=>({...n})),map=new Map(nodes.map(n=>[n.id,n])),links=(CA.knowledge_graph.edges||[]).filter(e=>(+e.strength||0)>=min).map(e=>({...e,source:map.get(e.source),target:map.get(e.target)})).filter(e=>e.source&&e.target);if(!links.length){svg.append('text').attr('x',24).attr('y',40).attr('fill','#8892B8').text('No links remain at this threshold.');return}const seen=new Set();links.forEach(e=>{seen.add(e.source.id);seen.add(e.target.id)});const used=nodes.filter(n=>seen.has(n.id)),anchors=anchorMap();const sim=d3.forceSimulation(used).force('link',d3.forceLink(links).id(d=>d.id).distance(d=>136-(+d.strength||0)*62).strength(.62)).force('charge',d3.forceManyBody().strength(d=>-85-(+d.global_importance||0)*165)).force('x',d3.forceX(d=>(anchors[groupOf(d)]||anchors.cross).x).strength(d=>groupOf(d)==='cross'?.06:.2)).force('y',d3.forceY(d=>(anchors[groupOf(d)]||anchors.cross).y).strength(d=>groupOf(d)==='cross'?.06:.2)).force('collision',d3.forceCollide().radius(d=>7+(+d.global_importance||0)*6.5));sim.stop();for(let i=0;i<360;i++)sim.tick();normalize(used);const root=svg.append('g');const zoom=d3.zoom().scaleExtent([.7,2.5]).on('zoom',ev=>root.attr('transform',ev.transform));svg.call(zoom);const edgeLayer=root.append('g'),edgeHitLayer=root.append('g'),nodeLayer=root.append('g');const edgeStroke=d=>groupOf(d.source)===groupOf(d.target)&&groupOf(d.source)!=='cross'?`${col(d.source)}44`:'rgba(148,163,255,.18)';const lines=edgeLayer.selectAll('line').data(links).join('line').attr('stroke',edgeStroke).attr('stroke-width',d=>.8+(+d.strength||0)*2).attr('stroke-linecap','round');const edgeHits=edgeHitLayer.selectAll('line').data(links).join('line').attr('stroke','transparent').attr('stroke-width',14).attr('stroke-linecap','round').style('cursor','pointer').on('click',(_,d)=>edgefill(d));const drag=d3.drag().on('start',(event,d)=>{const z=d3.zoomTransform(svg.node()),[px,py]=d3.pointer(event,svg.node()),rx=z.invertX(px),ry=z.invertY(py);d._dragDx=(d.sx||0)-rx;d._dragDy=(d.sy||0)-ry;sidefill(d)}).on('drag',(event,d)=>{const z=d3.zoomTransform(svg.node()),[px,py]=d3.pointer(event,svg.node()),rx=z.invertX(px),ry=z.invertY(py),r=5+(+d.global_importance||0)*6+10;d.sx=clamp(rx+(d._dragDx||0),r,w-r);d.sy=clamp(ry+(d._dragDy||0),r,h-r);renderPositions()}).on('end',(_,d)=>{delete d._dragDx;delete d._dragDy;sidefill(d)});const n=nodeLayer.selectAll('g').data(used).join('g').style('cursor','grab').on('click',(_,d)=>sidefill(d)).call(drag);
+/* outer glow halo */
+n.append('circle').attr('r',d=>(5+(+d.global_importance||0)*6)*2.6).attr('fill',d=>col(d)).attr('opacity',.04);
+/* mid glow */
+n.append('circle').attr('r',d=>(5+(+d.global_importance||0)*6)*1.6).attr('fill',d=>col(d)).attr('opacity',.09);
+/* main node */
+n.append('circle').attr('r',d=>5+(+d.global_importance||0)*6).attr('fill',d=>col(d)).attr('stroke','rgba(255,255,255,.22)').attr('stroke-width',1.5);
+/* bright core */
+n.append('circle').attr('r',d=>(5+(+d.global_importance||0)*6)*.38).attr('fill','rgba(255,255,255,.55)');
+n.append('title').text(d=>`${d.label}\n${groupOf(d)==='cross'?'Cross-course concept':CA.course_labels[groupOf(d)]||'Concept'}\nImportance ${(+d.global_importance||0).toFixed(2)}`);
+function renderPositions(){lines.attr('x1',d=>d.source.sx).attr('y1',d=>d.source.sy).attr('x2',d=>d.target.sx).attr('y2',d=>d.target.sy);edgeHits.attr('x1',d=>d.source.sx).attr('y1',d=>d.source.sy).attr('x2',d=>d.target.sx).attr('y2',d=>d.target.sy);n.attr('transform',d=>`translate(${d.sx},${d.sy})`)}renderPositions();svg.call(zoom.transform,d3.zoomIdentity)}sl.oninput=draw;draw()}
+function steps(){const data=[['01','Normalize lecture assets'],['02','Turn subtitles into transcript segments'],['03','Detect chapters and topic boundaries'],['04','Generate study materials and concepts'],['05','Build a cross-video graph']];document.getElementById('steps').innerHTML=data.map(s=>`<div class="step"><div class="stepno">Step ${s[0]}</div><h3>${s[1]}</h3></div>`).join('')}
+stats();filters();gridf();legend();graph();steps();
+</script>
+</body>
+</html>
