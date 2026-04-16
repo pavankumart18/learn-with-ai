@@ -591,6 +591,15 @@ a{text-decoration:none;color:inherit}
   justify-content:center;
 }
 
+.rap-lyrics{
+  width:min(100%,760px);
+}
+
+.rap-lyrics-text{
+  white-space:pre-wrap;
+  line-height:1.8;
+}
+
 /* ---- SEEK LINKS ---- */
 .seek-link{cursor:pointer}
 
@@ -755,6 +764,20 @@ const esc=s=>String(s||'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&
 const trim=s=>{s=String(s||'');const i=s.indexOf(':');return i>=0?s.slice(i+1).trim():s};
 const dur=n=>{n=+n||0;const h=Math.floor(n/3600),m=Math.floor((n%3600)/60),s=Math.round(n%60);return h?`${h}:${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`:`${m}:${String(s).padStart(2,'0')}`};
 const mb=n=>`${((+n||0)/1048576).toFixed(2)} MB`;
+function extractRapLyrics(text){
+  let t=String(text||'').replace(/\r\n?/g,'\n').trim();
+  const part2=t.match(/Part 2:\s*The Lyrics\s*\n([\s\S]*)$/i);
+  if(part2)t=part2[1].trim();
+  else{
+    const lyrics=t.match(/\bLyrics:\s*\n([\s\S]*)$/i);
+    if(lyrics)t=lyrics[1].trim();
+  }
+  t=t.replace(/^"+|"+$/g,'').trim();
+  t=t.replace(/^\[Style Prompt:[^\n]*\]\s*/i,'').trim();
+  const firstSection=t.search(/(\[Intro\]|\[Verse|\[Chorus\]|\[Outro\]|\[Bridge\]|\[Hook\]|\(Intro\)|\(Verse|\(Chorus\)|\(Hook\)|\(Concept Breakdown|\(Closing\)|\(Bridge\))/i);
+  if(firstSection>0)t=t.slice(firstSection).trim();
+  return t;
+}
 const rt=t=>Math.max(1,Math.round(String(t||'').trim().split(/\s+/).filter(Boolean).length/180));
 const md=t=>{
   if(!t)return'';
@@ -965,7 +988,8 @@ if(RAP&&panes.rapsong){
   const savedBytes=Math.max(0,(+RAP.originalBytes||0)-(+RAP.webmBytes||0));
   const savedPct=(+RAP.originalBytes||0)?Math.round((savedBytes/(+RAP.originalBytes||1))*100):0;
   const videoName=String(RAP.videoPath||'').split('/').pop()||'lecture-rap.webm';
-  panes.rapsong.innerHTML=`<div class="section" style="display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:12px"><div><h2>Lecture Rapsong</h2><div class="muted">A local compressed WebM version of the lecture rap, plus the exact prompt.txt used to create it.</div></div><button class="btn soft" type="button" id="rap-proof-btn">View prompt.txt proof</button></div><div class="rap-wrap"><div class="item rap-player-card"><video id="rap-video" controls preload="metadata" playsinline><source src="${esc(RAP.videoPath)}" type="video/webm">Your browser does not support WebM playback.</video></div><div class="rap-actions"><button class="btn dark" type="button" id="rap-fullscreen-btn">Fullscreen mode</button></div></div><div class="two" style="margin-top:20px"><div class="item"><h3>Compressed asset</h3><div class="desc">Stored as <code class="prose-code">${esc(videoName)}</code> in WebM format for lighter local playback.</div></div><div class="item"><h3>Prompt proof</h3><div class="desc">The original <code class="prose-code">prompt.txt</code> is embedded in the modal so you can verify the generated rap source.</div></div><div class="item"><h3>Original size</h3><div class="desc">${esc(mb(RAP.originalBytes))} MP4</div></div><div class="item"><h3>Reduced size</h3><div class="desc">${esc(mb(RAP.webmBytes))} WebM &middot; saved ${esc(mb(savedBytes))} (${esc(savedPct)}%)</div></div></div>`;
+  const rapLyrics=extractRapLyrics(RAP.prompt);
+  panes.rapsong.innerHTML=`<div class="section" style="display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:12px"><div><h2>Lecture Rapsong</h2><div class="muted">A local compressed WebM version of the lecture rap, plus the exact prompt.txt used to create it.</div></div><button class="btn soft" type="button" id="rap-proof-btn">View prompt.txt proof</button></div><div class="rap-wrap"><div class="item rap-player-card"><video id="rap-video" controls preload="metadata" playsinline><source src="${esc(RAP.videoPath)}" type="video/webm">Your browser does not support WebM playback.</video></div><div class="rap-actions"><button class="btn dark" type="button" id="rap-fullscreen-btn">Fullscreen mode</button></div><div class="item rap-lyrics"><h3>Lyrics</h3><div class="desc rap-lyrics-text">${esc(rapLyrics||'Lyrics unavailable.')}</div></div></div><div class="two" style="margin-top:20px"><div class="item"><h3>Compressed asset</h3><div class="desc">Stored as <code class="prose-code">${esc(videoName)}</code> in WebM format for lighter local playback.</div></div><div class="item"><h3>Prompt proof</h3><div class="desc">The original <code class="prose-code">prompt.txt</code> is embedded in the modal so you can verify the generated rap source.</div></div><div class="item"><h3>Original size</h3><div class="desc">${esc(mb(RAP.originalBytes))} MP4</div></div><div class="item"><h3>Reduced size</h3><div class="desc">${esc(mb(RAP.webmBytes))} WebM &middot; saved ${esc(mb(savedBytes))} (${esc(savedPct)}%)</div></div></div>`;
   const rapProofBtn=document.getElementById('rap-proof-btn');
   const rapVideo=document.getElementById('rap-video');
   const rapFullscreenBtn=document.getElementById('rap-fullscreen-btn');
