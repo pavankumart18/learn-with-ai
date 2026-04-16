@@ -1,0 +1,71 @@
+[Style Prompt: Modern conscious hip-hop, J. Cole style, melodic trap beat, deep storytelling narrative, introspective, educational, crisp hi-hats, heavy 808 bass, soulful vocal samples, clever wordplay, mid-tempo, modern rap delivery]
+
+[Intro]
+Yeah. Look.
+Chapter four. 
+We used to stress about the space, right? 
+Trying to fit the whole picture in the frame.
+But sometimes, you only need a piece of the canvas.
+Let's talk about the illusion. Virtual Memory.
+Look...
+
+[Verse 1]
+We used to force it all together, contiguous blocks,
+But fragmentation had us stressing, staring at the clocks.
+Ain't enough flexibility to utilize the space,
+So we broke it into pages, put 'em in a different place.
+Logical address space, looking like a perfect line,
+But physically? It's scattered by design.
+Think about PowerPoint, opening up a single slide,
+You ain't using every feature that the app can provide.
+You ain't making graphs, you ain't drawing no charts,
+So why we loading up the code for all the separate parts?
+It doesn't make sense to crowd the physical RAM,
+Just load the subset that you need, yeah, that's the master plan.
+Virtual memory, we separating the real,
+From the logical vision, that's the modern appeal.
+Keep the rest on the hard drive, waiting in the dark,
+Till the system really needs it to generate a spark.
+
+[Chorus]
+We only fetch it on demand, keep the physical free,
+So we can run a dozen programs simultaneously.
+Check the valid/invalid bit right there on the table,
+If it’s "V", you good to go. If it’s "I", you unable.
+You hit a Page Fault, OS gotta intervene,
+Fetching from the slow disk, keeping the memory clean.
+Yeah, keeping the memory clean.
+
+[Verse 2]
+Now pure demand paging means you wait 'til it's asked,
+But real systems predict it, pulling neighbors from the past.
+Why? Because that hard drive is moving like a snail,
+Orders of magnitude slower, setting you up to fail.
+When the program hits an "I" on the memory map,
+That's a Page Fault exception, a hardware trap.
+The OS takes control, puts the process on pause,
+Gives the CPU to someone else, respecting the laws.
+But if the disk is so slow, why the system so fast?
+Why don't the CPU freeze every time it gets passed?
+It’s the Principle of Locality wearing the crown,
+The only reason that the system ain't crashing to the ground!
+When you fetch a single page, you gonna use it again,
+And grab the neighbors right beside it like a circle of friends.
+Less I/O from the disk, more options for the core,
+The CPU Scheduler ain't starving no more.
+
+[Chorus]
+We only fetch it on demand, keep the physical free,
+So we can run a dozen programs simultaneously.
+Check the valid/invalid bit right there on the table,
+If it’s "V", you good to go. If it’s "I", you unable.
+You hit a Page Fault, OS gotta intervene,
+Fetching from the slow disk, keeping the memory clean.
+
+[Outro]
+Yeah. 
+More programs in the RAM. Better CPU utilization.
+Less time waiting on that slow disk.
+Locality of reference, man. 
+It’s not magic, it’s just good management.
+Cole world. We out.

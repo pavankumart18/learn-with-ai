@@ -1,0 +1,99 @@
+"You are an educational content creator who explains complex concepts through rhythmic, spoken-word rap narration.
+Your Task: Use the music generation tool to create a full audio track (approx. 3 minutes) based on the lyrics provided below.
+Style Guidelines:
+
+Genre: Educational Hip-Hop / Spoken Word Rap.
+Vibe: Confident, clear, and instructional (like a teacher with flow).
+Music: A steady, mid-tempo boom-bap or lo-fi hip-hop beat that doesn't overrule the vocals.
+Vocals: Clear articulation is a priority so the listener can learn the concepts.
+Lyrics:
+(Hook)
+Yo, today we’re leveling up the computation game,
+Moving past the finite and the stack-based frame.
+Get ready for a machine with a much bigger view,
+The Turing Machine—let’s break down what it can do.
+(Concept Breakdown)
+We’ve studied DFAs and NFAs before,
+Recognizing regular languages, but we need more.
+We saw Pushdown Automata and the power of the stack,
+But there’s a more powerful model that doesn’t look back.
+The Turing Machine is the ultimate plan,
+A theoretical model for everything a computer can.
+It’s the formal definition of an algorithm’s soul:
+A well-defined sequence to reach a logic goal.
+Think of an unbounded tape, stretching out wide,
+Infinite memory with nowhere to hide.
+You’ve got your input alphabet, we call it Sigma,
+But the tape alphabet, Gamma, solves the enigma.
+Gamma includes Sigma plus a special blank sign,
+To mark where the input ends on the infinite line.
+What makes it so powerful? What’s the big deal?
+It’s the read-and-write head that makes it all real.
+Automata we knew could only read and then pass,
+But the Turing Machine is in a different class.
+It reads a symbol, then it writes one too,
+Changing the data as it moves on through.
+The head moves left, and the head moves right,
+Keeping every symbol in its logical sight.
+Because it can move back to where it has been,
+Each symbol can be touched again and again.
+But this extra power brings a complicated twist:
+The guarantee of finishing might no longer exist.
+DFAs and PDAs process input just once,
+They always finish—they aren't any dunce.
+But because a Turing Machine can loop and repeat,
+It might never reach a termination that’s neat.
+This gives us three outcomes for an input string:
+You can Accept, you can Reject, or there’s one more thing—
+The machine might Loop Forever in an infinite spin,
+A state where the processing will never give in.
+(Decidability vs. Recognizability)
+Now learn these two terms, keep them clear in your mind:
+Decidability and Recognizability are the two of a kind.
+If a machine always stops, no matter the case,
+Accepting or rejecting at a finite pace,
+We call it Turing Decidable—or Recursive for short,
+It’s a robust solution of the sturdiest sort.
+But if it only accepts strings that belong,
+And might loop on the others when the input is wrong,
+That’s Turing Recognizable—also known to the few,
+As Recursively Enumerable, to give it its due.
+Recognizing is easier than deciding the fate,
+So the Recognizable set is significantly more great.
+Look at the hierarchy, the levels of the wall:
+Regular is inside, the smallest of all.
+Then Context-Free, then Decidable in the sphere,
+With Recognizable as the largest layer here.
+A Turing Machine can simulate the smaller machines with ease,
+By using fewer features and the tape as it please.
+(The Example and the Formal 7-Tuple)
+Take the language W-pound-W, let’s see,
+It’s not regular or context-free, but it’s a TM’s tea.
+The machine marks a symbol, then moves to the right,
+Past the separator, keeping the match in sight.
+It crosses off a match, then heads back to the start,
+Systematically checking every single part.
+If everything matches and it’s all marked through,
+The machine accepts—it knows the string is true.
+To define it formally, you need a 7-tuple set:
+States (Q), alphabets (Sigma, Gamma), don't forget.
+A start state, an accept state, a reject state too,
+And the transition function Delta to see the logic through.
+The Delta function takes a state and what the head sees,
+Then gives three instructions with mathematical ease:
+What's the Next State? What Symbol should it write?
+And does the Head Move Left or Right?
+(Reinforcement)
+Infinite tape for the memory store,
+Move left, move right, then write a bit more.
+Decidable means halting is a guarantee,
+Recognizable means loops are a possibility.
+The Turing Machine is the general model we seek,
+Reaching the heights of the computational peak.
+(Closing)
+That’s the high-level view of the machine and the tape,
+Giving the world of algorithms its theoretical shape.
+It’s messy in diagrams but powerful in thought,
+The foundation of everything that logic has wrought.
+Study the hierarchy and the 7-tuple plan,
+And you’ll understand computation like a master can.

@@ -1,0 +1,79 @@
+[Style Prompt: 90s East Coast Hip-Hop, boom-bap, deep storytelling narrative, cinematic street tale in the exact vocal and lyrical style of Nas, nostalgic, gritty, vinyl crackle, soulful piano loop, upright bass, poetic and vivid flow, mid-tempo, golden era]
+
+[Intro]
+Yeah.
+Listen to the architecture. Chapter 3.
+It’s the process concept, the genesis of the code.
+A program is just a blueprint, sitting passive on the page.
+But a process? That’s the hustle in motion.
+Let me paint the picture.
+
+[Verse 1]
+Out in the memory streets, the layout is cold,
+Where the OS reigns, and the stories unfold.
+A program’s just a passive entity, sleeping on the drive,
+But when you execute the script, the process comes alive.
+Multiple instances running, sharing the exact same name,
+But they all separate hustlers, playing a different game.
+The OS don’t even know they came from the same womb,
+Each one gets its own space, its own distinct room.
+Look at the memory blocks, divided in strict sections,
+The Text holds the code, the fundamental directions.
+The Data section holds the veterans, global and static,
+Permanent fixtures in the system, moving emphatic.
+Then you got the Stack, temporary local files,
+Function parameters and return addresses stacked in piles.
+And down in the Heap, it’s the dynamic allocation,
+Where the memory grows, feeding the operation.
+
+[Chorus]
+From New to Ready, to Running the block,
+Every active process trying to beat the clock.
+We navigating states, trying to elevate,
+Waiting on the I/O to open up the gate.
+Yeah, the CPU is the crown, the ultimate throne,
+But the Operating System runs the zone.
+
+[Verse 2]
+Now let’s talk about the states, the cycle of the life,
+Born into the system, dealing with the digital strife.
+First you get admitted, placed into the Ready state,
+Standing in the queue, hoping for a better fate.
+You ready for the mic, ready for the CPU,
+Waiting for the Scheduler to pick you from the crew.
+When you finally get selected, you shift to Running mode,
+Executing every line of the programmed code.
+But life ain't always simple, complications arise,
+You might hit an I/O request right before your eyes.
+The OS pulls you off, throws you in the Waiting cell,
+Until the hardware answers, it’s a temporary hell.
+And when the device completes, you don’t go back to the top,
+You go straight to the Ready queue, waiting for the drop.
+
+[Chorus]
+From New to Ready, to Running the block,
+Every active process trying to beat the clock.
+We navigating states, trying to elevate,
+Waiting on the I/O to open up the gate.
+Yeah, the CPU is the crown, the ultimate throne,
+But the Operating System runs the zone.
+
+[Verse 3]
+Watch out for the interrupts, the hardware ticks fast,
+No one gets to rule forever, nothing’s built to last.
+A time interrupt hits, your quantum has expired,
+Back to the Ready state, you temporarily fired.
+And if you try to break the rules, an exception gets triggered,
+The kernel steps in, the system gets reconfigured.
+Invalid operations lead to instant termination,
+You wiped from the board, end of your generation.
+It’s a cycle of survival in the silicon haze,
+Programs are passive, but processes navigate the maze.
+
+[Outro]
+Yeah. That’s the life cycle.
+Text, Data, Heap, and Stack.
+From Ready to Running, Waiting and back.
+The Operating System dictates the flow.
+We just trying to get some time on the processor.
+Class dismissed.

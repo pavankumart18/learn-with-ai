@@ -1,0 +1,86 @@
+[Style Prompt: 90s Golden era hip-hop, boom-bap, Black Thought or Rakim style, highly lyrical storytelling, conscious rap, educational, steady drum break, deep upright bass, subtle vinyl crackle, intricate internal rhymes, mid-tempo, intellectual delivery]
+
+[Intro]
+Yeah. Turn the mic up a little bit. 
+Listen close, we stepping into a new paradigm today.
+We leaving the greedy choices behind.
+We talking Dynamic Programming.
+Bottom-up. Building the foundation.
+Let's get into it.
+
+[Verse 1]
+Let's take a walk through the logic, Fibonacci the start,
+A simple sequence but it tears the recursion apart.
+You write it top-down, calling N minus one,
+Then N minus two, thinking the battle is won.
+But look at the tree, man, the branches are overlapping,
+Solving the same subproblems, your processor's collapsing.
+It’s exponential, height of the tree is N,
+A hundred iterations and you won't see the end.
+So flip the script. Stop living inside the past,
+We going bottom-up, making the memory last.
+Base cases first, zero is zero, one is one,
+Store 'em in an array, look how the math is done.
+Instead of computing the history over again,
+Just look it up in the table, we moving linear, my friend.
+That’s the essence of DP, the ultimate pivot,
+Save your solutions, that’s the way that we live it.
+
+[Chorus]
+Don't repeat the past, build it up from the floor,
+Dynamic Programming, unlocking the door.
+Overlapping subproblems, we break 'em apart,
+Store 'em inside the table, yeah we making it art.
+From exponential to linear, watch the complexity drop,
+Bottom-up to the top, we ain't never gonna stop.
+
+[Verse 2]
+Now let’s graduate, step to the 0/1 Knapsack,
+Greedy algorithms fail, they getting pushed to the back.
+We got optimal substructure, but no greedy choice,
+So we build a 2D table to give the logic a voice.
+Rows are the items, columns are the capacity,
+Mapping out the subsets with utter sagacity.
+Item by item, we ask: "Do I take or leave?"
+If the weight is too heavy, then there’s nothing to achieve.
+Just copy the block from the row right above it,
+But if the item fits? That’s when the formula covets.
+You take the max of the two: the take or the pass,
+If I leave it, I get the previous row in the glass.
+If I take it, I add the value, plus what I can fit,
+In the leftover space, that’s how the logic is lit!
+Compare the two sums, the maximum takes the throne,
+Filling the grid till the optimal answer is shown.
+
+[Chorus]
+Don't repeat the past, build it up from the floor,
+Dynamic Programming, unlocking the door.
+Overlapping subproblems, we break 'em apart,
+Store 'em inside the table, yeah we making it art.
+From exponential to linear, watch the complexity drop,
+Bottom-up to the top, we ain't never gonna stop.
+
+[Verse 3]
+Now the table is full, the bottom right is the key,
+But how do we know what we packed in the canopy?
+We gotta trace it back, reverse engineer the track,
+Compare the current square to the one sitting in back.
+If the value's the same as the row right above,
+We didn't take the item, push it away with a shove.
+But if the value is different, we packed it inside,
+Subtract the weight from the column, let the index slide.
+Now let’s talk complexity. O of N times C.
+Looks like a polynomial, a linear degree.
+But hold up! It's pseudo-polynomial, a mathematical trick,
+C is the magnitude, making the algorithm sick.
+The input size is the characters, the bits on the screen,
+So technically exponential is the reality seen.
+Weakly NP-Complete, but practically fast,
+Dynamic Programming, making the algorithms last.
+
+[Outro]
+Yeah. You see the vision?
+Store your work. Build it piece by piece.
+O of N times C. 
+Table generation.
+Class dismissed.

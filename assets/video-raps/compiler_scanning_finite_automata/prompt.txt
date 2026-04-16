@@ -1,0 +1,85 @@
+Here are the rap lyrics and the system prompt for your new conversation to generate the audio.
+Part 1: The System Prompt
+Copy and paste this into the new chat before pasting the lyrics:
+"You are an educational content creator who explains computer science concepts through rhythmic, spoken-word rap narration.
+Your Task: Use the music generation tool to create a full audio track (approx. 3.5 minutes) using the lyrics provided.
+Style Guidelines:
+Genre: Educational Hip-Hop (reminiscent of the articulate, rhythmic flow of Nas or Kendrick Lamar).
+Vibe: Technical, clear, and instructional.
+Music: A steady, mid-tempo boom-bap or lo-fi beat. The vocals must be the primary focus with clear articulation.
+Structure: Follow the Hook, Breakdown, and Summary sections provided in the lyrics.
+Lyrics:
+[PASTE THE LYRICS BELOW]"
+Part 2: The Lyrics
+(Hook)
+Yo, we’ve seen the overview, the compiler’s grand design,
+But now we’re zooming in, crossing the starting line.
+Phase one of the journey, where the code starts to dance,
+We’re talking about Scanning—let’s take a look at the trance.
+(Concept Breakdown: Definitions)
+Before we build the scanner, let’s get the basics right,
+The theory of computation brings the logic to light.
+An Alphabet is a finite set, symbols in a row,
+A String is just a sequence, where those symbols go.
+And what is a Language? It’s simpler than it seems,
+Just a set of strings, the fabric of our coding dreams.
+Whether meaningful or not, if it’s a set, it qualifies,
+Formal languages are built before the compiler flies.
+(Concept Breakdown: The Scanner’s Job)
+In this course, we define languages with a specific goal:
+To identify the Tokens that play a certain role.
+Take x12 = 32; as a string you might see,
+It’s got four distinct tokens, as clear as can be.
+The variable is an Identifier, the name of the game,
+The = is an Operator, assignment is its name.
+The 32 is a Constant, an unsigned integer too,
+And the semicolon marks the End of Statement for you.
+The scanner sets the rules, defining every part of speech,
+Putting valid tokens within the compiler’s reach.
+(Concept Breakdown: DFA vs. NFA)
+To recognize these languages, we use specific tools,
+Finite Automata and Regular Expressions are the rules.
+A DFA is deterministic, it’s strictly defined,
+Exactly one path for every symbol you find.
+Out of every single state, for every symbol in the set,
+There’s a transition mapped out—a deterministic bet.
+It’s easy to program, just a switch or a table,
+Predictable and fast, if your logic is stable.
+But the NFA is different; it’s got flexibility,
+Multiple paths and epsilon transitions for agility.
+It’s more compact and easier for humans to write,
+But tracing through its paths can be a harder fight.
+If one path leads to an Accept State (that double-circle sign),
+The string belongs to the language—it’s doing just fine.
+(Concept Breakdown: The Pipeline)
+Humans write Regular Expressions because they’re easy to compose,
+Defining the micro-syntax of how the language flows.
+But we need a DFA to make the code run fast,
+So we use a systematic pipeline to make the logic last.
+We take the Regular Expression and build an NFA,
+Then use Subset Construction to lead the way—
+Converting that NFA into a DFA frame,
+Ready for the computer to recognize the game.
+Tools like Flex automate this whole logical track,
+Converting your expressions into C code—no looking back.
+(The Example: Substrings and Length)
+Think of a language looking for the substring 1 0 1,
+In an NFA, the work is already half-done.
+You loop at the start, match the bits, loop at the end,
+Anything before or after is the NFA’s friend.
+Or consider a language where the length must be even,
+Repeat Sigma Sigma as a loop you believe in.
+Zero is even, an empty string counts as valid,
+Odd length needs one symbol more to balance the ballad.
+(Reinforcement)
+RE to NFA, then DFA is the goal,
+Scanning the words is how we find the program’s soul.
+Identifiers, integers, and operators in the mix,
+The scanner is the filter that the logic context picks.
+(Closing)
+That’s the intro to scanning, the compiler’s first gate,
+Turning raw characters into a tokenized state.
+From Thompson’s construction to the subset plan,
+We’re building the foundation as fast as we can.
+Study the automata and the way the table grows,
+And you’ll master how the lexical analysis flows.

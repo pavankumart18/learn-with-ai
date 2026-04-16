@@ -1,0 +1,80 @@
+[Style Prompt: Modern West Coast hip-hop, Kendrick Lamar style, dynamic shifting flows, aggressive yet intellectual delivery, intricate rhyme schemes, live drum breaks, walking upright bass, frantic saxophone loops, high-energy, conscious rap, fast-paced]
+
+[Intro]
+Wake up!
+Lecture zero was a blur, a vague little dream.
+Today we tear the hood off and look at the machine.
+Three phases of the compiler. Front, middle, and back.
+We going from the high-level down to the exact.
+Listen close!
+
+[Verse 1]
+Step into the Front End, where the source code lives,
+A million lines of text, we gotta break down the grid.
+First up is the Scanner, the lexical beast,
+Looking at the whole program like a string at a feast.
+Chopping characters to tokens, identifying the lexemes,
+Using regular expressions to build up the regimes!
+It knows an equal sign ain't a variable name,
+It strips away the spaces, yeah it’s mastering the game.
+Pass it to the Parser, syntactic translation,
+Building an Abstract Syntax Tree out the station.
+Using Grammars for the rules, checking every single sentence,
+But hold up! Semantic Analysis demands a repentance.
+"The room drives the car"—yeah, the grammar is clean,
+But the types don't match, what the hell does it mean?
+You can't add an integer to a custom object class!
+The Symbol Table checks the scope before it lets it pass!
+
+[Chorus]
+Front to the back, watch the code react!
+High-level language getting broken to the exact.
+Front End, Optimizer, Back End attack,
+We compiling the logic, man, there's no turning back!
+Yeah! From the AST down to the metal,
+Translating the puzzle, we solving the riddle!
+
+[Verse 2]
+Now enter the Optimizer. The middle of the map.
+Supposed to be machine-independent, avoiding the trap.
+We trying to make it efficient, eliminate the waste,
+Common Sub-Expression Elimination setting the pace.
+Take "A plus B", calculate it just once,
+Store it in a temporary "T" for the front!
+But wait—is it really a guaranteed win?
+What if the registers are full and we commit a sin?
+If we gotta load "T" from the main memory bank,
+The latency is massive, the performance gonna tank!
+It's a trade-off! Recomputing might be faster than the cache,
+Optimization ain't a promise, it’s a calculated dash!
+
+[Chorus]
+Front to the back, watch the code react!
+High-level language getting broken to the exact.
+Front End, Optimizer, Back End attack,
+We compiling the logic, man, there's no turning back!
+Yeah! From the AST down to the metal,
+Translating the puzzle, we solving the riddle!
+
+[Verse 3]
+Welcome to the Back End! Target specific!
+This is where the hardware gets truly prolific.
+Instruction Selection, mapping abstract to the real,
+RISC or CISC architecture, changing how it feel.
+We assume we got infinite registers to run,
+But the hardware only got a few under the sun!
+So Register Allocation steps into the fight,
+Mapping virtual to physical to make the code right.
+But we ain't done yet! Instruction Scheduling is next!
+A memory load takes time, it's a bottleneck hex.
+So we reorder the sequence, hide the latency gap,
+Execute another multiply while putting the load in the back!
+Maximize the frequency, utilize the core!
+
+[Outro]
+Yeah.
+Compiler construction. 
+Scanning, Parsing, Semantics.
+Optimization, Selection, Allocation, Scheduling.
+Translating the human mind to the silicon brain.
+We out.

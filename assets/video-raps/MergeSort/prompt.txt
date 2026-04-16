@@ -1,0 +1,80 @@
+[Style Prompt: 80s Pop-R&B, Michael Jackson style, upbeat dance-pop, funky synth bass, crisp drum machine, rhythmic staccato vocal delivery, dramatic pauses, classic ad-libs (Hee-hee, Ow!, Shamone), theatrical, highly energetic]
+
+[Intro]
+(Footsteps... a heavy bassline drops)
+*Hee-hee!*
+*Ow!*
+Listen to the sequence. 
+We stepping into Formal Languages tonight.
+It ain't just words, baby. It's the machine.
+*Shamone!*
+
+[Verse 1]
+It's close to midnight, we talking 'bout the alphabet,
+Not A to Z, it's Sigma—Zero, One—now are you set?
+A symbol is a character, a string is in a line,
+One-Zero-One ain't Zero-One-One, respect the design!
+(Hoo!)
+The order really matters when you stepping to the floor,
+A sequence of the symbols, let me give you something more.
+We looking for a pattern, a property to find,
+A language is a set of strings, expanding out your mind!
+
+[Pre-Chorus]
+But watch out for the Empty String, Epsilon's the name!
+It hasn't got no symbols, but it's playing in the game.
+Don't confuse it with the Phi, that’s an empty set of space,
+A language with an Epsilon still got a size to trace!
+*Aaow!*
+
+[Chorus]
+Are you listening, Annie? To the Finite Automata!
+It’s a tool for recognition, yeah, it's processing the data!
+The nodes are the states, the arrows are the flow!
+Double circle means ACCEPT, it's time to run the show!
+We traversing through the graph, moving symbol by symbol!
+Deterministic logic, yeah, it makes the system nimble!
+*(Hee-hee!)*
+
+[Verse 2]
+We stepping into DFA, Deterministic style,
+You gotta have a pathway for every symbol in the file!
+From every single node, you need a zero and a one,
+If you leave a transition out, the machine is completely done!
+*(Dakka-dakka-dakka-dow!)*
+Let’s build a little model, a language that we love,
+Strings that start with '1', fits the system like a glove!
+
+[Bridge]
+Start state! (Start state!)
+Looking for the first move to begin.
+If you see a '1' first, you step into the win!
+Double circle, final state, you looping in the clear,
+A zero or a one comes next? You got nothing to fear!
+*Shamone!*
+
+[Verse 3]
+But wait! What if the first symbol is a '0'?
+You slip into the shadows where the bad machines go!
+You fall into the TRAP STATE! State number Q2!
+No double circle waiting, there is no escape for you!
+You can spin, you can shout, you can drop a million ones,
+But once you hit the trap state, the algorithm's done!
+*(Ow!)*
+It's rejected! The string does not belong!
+You gotta play the rules if you wanna sing the song!
+
+[Chorus]
+Are you listening, Annie? To the Finite Automata!
+It’s a tool for recognition, yeah, it's processing the data!
+The nodes are the states, the arrows are the flow!
+Double circle means ACCEPT, it's time to run the show!
+We traversing through the graph, moving symbol by symbol!
+Deterministic logic, yeah, it makes the system nimble!
+
+[Outro]
+You've been struck by... a smooth automaton.
+*(Hee-hee!)*
+Zero. One. Accept. Reject.
+That's the grammar of the floor.
+*Ow!* (Fade out with funky bassline and synth stabs)

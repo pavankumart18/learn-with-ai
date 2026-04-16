@@ -1,0 +1,85 @@
+[Style Prompt: 90s East Coast Hip-Hop, boom-bap, deep storytelling narrative, cinematic street tale in the exact vocal and lyrical style of Nas, nostalgic, gritty, vinyl crackle, soulful piano loop, upright bass, poetic and vivid flow, mid-tempo, golden era]
+
+[Intro]
+Yeah. 
+Listen to the tale of the silicon streets.
+A story of survival inside the architecture.
+We’ve been studying the what, now we live the how.
+Let me paint the picture. 
+
+[Verse 1]
+It was a cold night on the motherboard, the silicon streets,
+Process X was born, hungry for the rhythm and beats.
+He needed CPU time just to execute his plan,
+But the Scheduler was the kingpin, the boss of the land.
+X looked around, it was a multi-core hustle,
+Different chips on the board, everybody flexing muscle.
+He started running, doing math, a heavy calculation,
+A pure CPU burst, building up his reputation.
+Adding, multiplying, storing data in the night,
+Everything was smooth until he lost his running right.
+He needed keyboard input, maybe reading from a file,
+The OS stepped in and said, "You gonna wait for a while."
+That’s an I/O burst, and the system don't pause,
+They stripped him of the mic, man, respecting the laws.
+When his file finally loaded, he didn't get to run straight,
+They threw him in the queue, stuck inside the Ready state.
+
+[Chorus]
+Who gets the time? Who gets the clock?
+When the hardware timer ticks, who’s running the block?
+It’s a trade-off of time, a paradoxical maze,
+Balancing the throughput and the user delays.
+Yeah, we maximizing usage while we minimizing wait,
+The Operating System dictating the fate.
+
+[Verse 2]
+Now X is in the queue, looking at the histogram,
+Two milliseconds is the standard for the program.
+He saw an old process claim he ran for eight straight,
+But everybody knew it was a myth, a rare fate.
+You can't survive that long without an I/O request,
+A million cycles a millisecond put you to the test.
+So X is waiting patiently, maybe in a priority tree,
+Hoping that the Short-Term Scheduler will set him free.
+But watch out for the clock, the hardware timer tick,
+Preemptive scheduling, man, it happens real quick.
+A timer goes off, shouts, "Your session is done!"
+They snatch the CPU and let another process run.
+Non-preemptive is weak, letting one man hoard,
+But preemption keeps the balance right across the whole board.
+X is watching from the sideline, plotting his return,
+Waiting for the dispatcher so his logic can burn.
+
+[Chorus]
+Who gets the time? Who gets the clock?
+When the hardware timer ticks, who’s running the block?
+It’s a trade-off of time, a paradoxical maze,
+Balancing the throughput and the user delays.
+Yeah, we maximizing usage while we minimizing wait,
+The Operating System dictating the fate.
+
+[Verse 3]
+Now enter the Dispatcher, the enforcer in the night,
+Implementing the decisions, making sure the state is right.
+He walks up to X, does a context switch,
+Saves the state of the last guy, ignoring the glitch.
+Restores X’s registers, wakes him from his sleep,
+But here is the secret that the system gotta keep:
+He gotta switch X back into the User Mode,
+Or X could get the keys to the privileged code!
+Disaster strikes if a process gets the kernel control,
+So the dispatcher locks it down, playing his role.
+Now X is back running, but he feels the paradox:
+Shrink the time quantum down, thinking out of the box?
+Response time gets better, users feeling the speed,
+But turnaround time suffers, that’s a heavy stampede.
+Too much context switching, the OS wasting its breath,
+A tragic trade-off balancing the cycles of death.
+
+[Outro]
+Yeah. That's the life of a process.
+Dispatch latency. 
+System requirements versus user desires.
+We just trying to find the balance in the circuitry.
+Class dismissed.

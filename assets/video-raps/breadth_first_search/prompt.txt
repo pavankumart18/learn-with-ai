@@ -1,0 +1,83 @@
+[Style Prompt: Atmospheric neo-soul hip-hop, cinematic storytelling, JID or Lupe Fiasco style, agile and precise flow, jazz-hop beat, syncopated drum breaks, deep upright bass, echoing electric piano, high intellectual energy, neat and crisp delivery]
+
+[Intro]
+Yeah. Step into the labyrinth.
+Vertices and edges. The great network.
+We got the blueprint right here: the Adjacency List.
+Today, we ain't diving deep. We expanding wide.
+Breadth-First Search. Let the ripple begin.
+Listen.
+
+[Verse 1]
+Look at the graph, a constellation of dots,
+Connected by the edges, tying up all the knots.
+We could go deep—DFS, fall into the abyss,
+Find the loops, check the structure, see if something’s amiss.
+But nah, today we need the shortest path to exist,
+The minimum unweighted distance on the whole damn list!
+So we drop the Stack, we don't need it today,
+We grab the Queue, First-In-First-Out is the play.
+Every vertex is a room, but the doors are locked closed,
+And the distance to 'em all is Infinity, bro.
+A sufficiently large number, out of reach, in the dark,
+Except the Source—distance zero. That’s the spark.
+
+[Chorus]
+Expand the wave, level one, level two!
+Take the source, step back, drop it into the Queue.
+Dequeue the front, grab the neighbors in vicinity,
+If they haven’t been touched, they're sitting at Infinity!
+Update the distance, mark the parent on the track,
+Then put 'em in the Queue, send 'em straight to the back!
+Yeah, we expanding the wave.
+Breadth-First. Navigating the maze.
+
+[Verse 2]
+Now watch the execution, the mechanism is flawless.
+We pull a node out, we respecting the orders.
+Look at its neighbors—say we pull out an 'A',
+We see 'B' and 'D' waiting, so we map out the way.
+Distance of 'A' is zero, so the neighbors are one,
+We mark the Pi pointer, show 'em where they came from.
+Put 'B' and 'D' in the line, it don't matter the letter,
+Alphabetical order just makes the tracing look better.
+But hold up! When we pull 'B', 'A' is sitting right there,
+Do we put 'A' back in? Nah, you gotta beware!
+If you trace back to 'A', you catch an infinite loop,
+A never-ending cycle, you get trapped in the soup.
+That’s why we check the Infinity! If the distance is set,
+We know the node has been visited, it's out of the net.
+
+[Chorus]
+Expand the wave, level one, level two!
+Take the source, step back, drop it into the Queue.
+Dequeue the front, grab the neighbors in vicinity,
+If they haven’t been touched, they're sitting at Infinity!
+Update the distance, mark the parent on the track,
+Then put 'em in the Queue, send 'em straight to the back!
+Yeah, we expanding the wave.
+Breadth-First. Navigating the maze.
+
+[Verse 3]
+Now the Queue is empty. The mission complete.
+Look at the BFS tree, mathematically neat.
+But what about the nodes still sitting at Infinity?
+They disconnected, man, outside of the vicinity.
+Unreachable shadows, sitting out in the cold,
+The algorithm proves that they ain't part of the fold.
+Now let’s run the analysis, check the time and the space,
+How many operations to conquer the race?
+V is the vertices, E is the edges we see,
+Are they dependent? Nah, they acting independently.
+We check every node once, cross every edge in the view,
+If it's undirected, man, we cross the edges by two!
+But it's aggregate. Sum it up, keep the logic intact,
+The asymptotic complexity is a beautiful fact.
+
+[Outro]
+$O(V + E)$. 
+Linear time. 
+Nothing exponential about it. 
+We expanded the wave. We found the path.
+Breadth-First Search. 
+Maze conquered. We out.
